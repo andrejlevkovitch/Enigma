@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include "enigmalib.h"
 
-#define SIZE 10
-
 int main (void)
 {
     printf ("IN\n");

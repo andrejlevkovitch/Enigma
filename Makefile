@@ -1,10 +1,10 @@
 # Makefile for Enigma
 
 enigma: main.o libenigma.so
-	gcc -o enigma main.o -L. -lenigma -Wl,-rpath,. -Wall
+	g++ -o enigma main.o -L. -lenigma -Wl,-rpath,. -Wall
 
-main.o: main.c
-	gcc -c main.c -Wall
+main.o: main.cpp
+	g++ -c main.cpp -Wall
 
 libenigma.so: sort_fun.o
 	gcc -shared -o libenigma.so sort_fun.o -Wall
@@ -13,7 +13,7 @@ sort_fun.o: sort_fun.c
 	gcc -c -fPIC sort_fun.c -Wall
 
 clean:
-	rm *.o *.so enigma
+	rm -f *.o *.so enigma
 
 #install: enigma libenigma.so
 #	sudo install libenigma.so /usr/lib
