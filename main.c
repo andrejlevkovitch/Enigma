@@ -2,27 +2,41 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <curses.h>
+#include <ctype.h>
 #include "enigmalib.h"
 
 int main (void)
 {
-    printf ("IN\n");
+    initscr ();
 
-    int mass [SIZE] = {5, 6, 1, 0, 2, 3, 9, 7, 4, 8};
+    noecho ();
 
-    for (unsigned int i = 0; i < SIZE; ++i) {
-        printf ("%i ", mass [i]);
+    signed char ch = 0;
+    char *rotor_values = NULL;
+    int y = 0, x = 0;
+
+    ramka ();
+    rotor_values = inputRV ();
+
+    move (STR_TXT, 0);
+    while ((ch = toupper (getch ())) != EOF_DOP) {
+        if (isupper (ch)) {
+            getyx (curscr, y, x);
+            rotor_tools (rotor_values);
+            move (y, x);
+
+            ch = rotor_crypt (ch, rotor_values);
+
+            addch (ch);
+            refresh ();
+        }
     }
-    printf ("\n");
 
-    sortFun (mass, SIZE);
+    endwin ();
 
-    printf ("OUT\n");
-
-    for (unsigned int i = 0; i < SIZE; ++i) {
-        printf ("%i ", mass [i]);
-    }
-    printf ("\n");
+    free (rotor_values);
+    rotor_values = NULL;
 
     return EXIT_SUCCESS;
 }
