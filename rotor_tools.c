@@ -3,21 +3,17 @@
 #include <curses.h>
 #include "enigmalib.h"
 
-void rotor_tools (char * rotor_values)
+void rotor_tools (struct blok_R *blok)
 {
-    if (rotor_values [1] == STP_MECH_2 - 1 && rotor_values [2] == STP_MECH_3 - 1)
-        rotor_values [0] = (rotor_values [0] + 1 > 'Z') ? 'A': rotor_values [0] + 1;
-
-    if (rotor_values [2] == STP_MECH_3 - 1)
-        rotor_values [1] = (rotor_values [1] + 1 > 'Z') ? 'A': rotor_values [1] + 1;
-
-    rotor_values [2] = (rotor_values [2] + 1 > 'Z') ? 'A': rotor_values [2] + 1;
+    blok->rotor_1 = (blok->rotor_3->number == N_LETTERS - 1 && blok->rotor_2->number == N_LETTERS - 1) ? blok->rotor_1->next: blok->rotor_1;
+    blok->rotor_2 = (blok->rotor_3->number == N_LETTERS - 1) ? blok->rotor_2->next: blok->rotor_2;
+    blok->rotor_3 = blok->rotor_3->next;
 
     move (STR_RV, 0);
 
-    addch (rotor_values [0]);
-    addch (rotor_values [1]);
-    addch (rotor_values [2]);
+    addch (blok->rotor_1->letter);
+    addch (blok->rotor_2->letter);
+    addch (blok->rotor_3->letter);
 
     return;
 }

@@ -1,6 +1,5 @@
 //main.c
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <curses.h>
 #include <ctype.h>
@@ -13,20 +12,30 @@ int main (void)
     noecho ();
 
     signed char ch = 0;
-    char *rotor_values = NULL;
     int y = 0, x = 0;
 
+    char *replace = NULL;
+
+    struct blok_R *rotors_blok = NULL;
+
     ramka ();
-    rotor_values = inputRV ();
+
+    rotors_blok = init_blokR ();
+
+    inputRV (rotors_blok);
+
+    replace = input_KP ();
 
     move (STR_TXT, 0);
     while ((ch = toupper (getch ())) != EOF_DOP) {
         if (isupper (ch)) {
             getyx (curscr, y, x);
-            rotor_tools (rotor_values);
+            rotor_tools (rotors_blok);
             move (y, x);
 
-            ch = rotor_crypt (ch, rotor_values);
+            ch = kom_panel (ch, replace, IN);
+            ch = rotor_crypt (ch, rotors_blok);
+            ch = kom_panel (ch, replace, OUT);
 
             addch (ch);
             refresh ();
@@ -35,8 +44,11 @@ int main (void)
 
     endwin ();
 
-    free (rotor_values);
-    rotor_values = NULL;
+    free_rotor (rotors_blok->rotor_1);
+    free_rotor (rotors_blok->rotor_2);
+    free_rotor (rotors_blok->rotor_3);
+    free (rotors_blok);
+    rotors_blok = NULL;
 
     return EXIT_SUCCESS;
 }

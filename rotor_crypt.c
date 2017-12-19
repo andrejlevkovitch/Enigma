@@ -1,46 +1,59 @@
 //rotor_crypt.c
 
+#include <stdlib.h>
 #include "enigmalib.h"
 
-char rotor_crypt (char ch, char *rotor_values)
+char rotor_crypt (char ch, struct blok_R *blok)
 {
-    ch += rotor_values [2] - 'A';
-    ch = (ch > 'Z') ? ch - 'Z' + 'A' - 1: ch;
-    ch = rotor_3 (ch, RIGHT);
-    ch -= rotor_values [2] - 'A';
-    ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
+    struct rotor *r = NULL;
+    struct rotor *r_b = NULL;
+    int n = 0;
 
-    ch += rotor_values [1] - 'A';
-    ch = (ch > 'Z') ? ch - 'Z' + 'A' - 1: ch;
-    ch = rotor_2 (ch, RIGHT);
-    ch -= rotor_values [1] - 'A';
-    ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
+    for (int i = 0; i < N_ROTORS; ++i) {
+        switch (i) {
+            case 0:
+                r_b = r = blok->rotor_3;
+                break;
+            case 1:
+                r_b = r = blok->rotor_2;
+                break;
+            case 2:
+                r_b = r = blok->rotor_1;
+                break;
+        }
 
-    ch += rotor_values [0] - 'A';
-    ch = (ch > 'Z') ? ch - 'Z' + 'A' - 1: ch;
-    ch = rotor_1 (ch, RIGHT);
-    ch -= rotor_values [0] - 'A';
-    ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
+        n = ch - 'A';
+        for (int j = 0; j < n; ++j) {
+            r = r->next;
+        }
+        ch = r->output->letter;
+        ch -= (r_b->letter - 'A');
+        ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
+    }
 
     ch = reflector_B (ch);
 
-    ch += rotor_values [0] - 'A';
-    ch = (ch > 'Z') ? ch - 'Z' + 'A' - 1: ch;
-    ch = rotor_1 (ch, LEFT);
-    ch -= rotor_values [0] - 'A';
-    ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
+    for (int i = N_ROTORS - 1; i >= 0; --i) {
+        switch (i) {
+            case 0:
+                r_b = r = blok->rotor_3;
+                break;
+            case 1:
+                r_b = r = blok->rotor_2;
+                break;
+            case 2:
+                r_b = r = blok->rotor_1;
+                break;
+        }
 
-    ch += rotor_values [1] - 'A';
-    ch = (ch > 'Z') ? ch - 'Z' + 'A' - 1: ch;
-    ch = rotor_2 (ch, LEFT);
-    ch -= rotor_values [1] - 'A';
-    ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
-
-    ch += rotor_values [2] - 'A';
-    ch = (ch > 'Z') ? ch - 'Z' + 'A' - 1: ch;
-    ch = rotor_3 (ch, LEFT);
-    ch -= rotor_values [2] - 'A';
-    ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
+        n = ch - 'A';
+        for (int j = 0; j < n; ++j) {
+            r = r->next;
+        }
+        ch = r->input->letter;
+        ch -= (r_b->letter - 'A');
+        ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
+    }
 
     return ch;
 }
