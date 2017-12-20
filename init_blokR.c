@@ -7,7 +7,8 @@ struct blok_R *init_blokR (void)
 {
     struct blok_R *blok = NULL;
 
-    blok = malloc (sizeof *blok);
+    if (!(blok = malloc (sizeof *blok)))
+        return NULL;
 
     blok->rotor_1 = init_rotor (STP_MECH_1, PERMUTATION_R1);
     blok->rotor_2 = init_rotor (STP_MECH_2, PERMUTATION_R2);

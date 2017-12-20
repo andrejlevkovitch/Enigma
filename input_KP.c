@@ -23,16 +23,15 @@ char* input_KP (void)
     while ((ch = getch ()) != '\n') {
         if (ch == 27) {
             if (getch () == 91) {
-                ch = getch ();
-                switch (ch) {
-                    case 67:
+                switch (getch ()) {
+                    case RIGHT:
                         if (x == N_LETTERS - 1)
                             x = 0;
                         else
                             ++x;
                         move (STR_KP, x);
                         break;
-                    case 68:
+                    case LEFT:
                         if (!x)
                             x = N_LETTERS - 1;
                         else
@@ -40,6 +39,7 @@ char* input_KP (void)
                         move (STR_KP, x);
                         break;
                 }
+                refresh ();
             }
         }
         else
@@ -56,6 +56,9 @@ char* input_KP (void)
                 move (STR_KP, x);
                 refresh ();
             }
+            else
+                if (ch == EOF_DOP)
+                    return NULL;
     }
 
     return replace;

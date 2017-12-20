@@ -22,6 +22,11 @@
 
 #define ALFABETO "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+#define RIGHT 67
+#define LEFT 68
+#define UP 65
+#define DOWN 66
+
 struct rotor {
     struct rotor *prev;
     struct rotor *next;
@@ -37,9 +42,9 @@ struct blok_R {
     struct rotor *rotor_3;
 };
 
-void inputRV (struct blok_R*);
+int inputRV (struct blok_R *);
 
-void ramka (void);
+void ramka (struct blok_R *);
 
 char reflector_B (char);
 
@@ -51,7 +56,7 @@ char kom_panel (char, char*, char);
 
 struct rotor *init_rotor (char, char*);
 
-int free_rotor (struct rotor *rotor);
+int free_rotor (struct rotor *);
 
 struct blok_R *init_blokR (void);
 
