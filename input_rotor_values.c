@@ -12,12 +12,12 @@ int inputRV (struct blok_R *blok)
 
     move (STR_RV, x);
 
-    while ((ch = getch ()) != '\n') {
+    while ((ch = mygetch ()) != '\n') {
         if (ch == ESC) {
 #ifdef linux
-            if (getch () == 91) {
+            if (mygetch () == 91) {
 #endif
-                switch (getch ()) {
+                switch (mygetch ()) {
                     case RIGHT:
                         if (x == N_ROTORS - 1)
                             x = 0;

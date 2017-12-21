@@ -3,8 +3,8 @@
 enigma: libenigma.so
 	gcc -o enigma -L. -lenigma -Wl,-rpath,. -lncurses -Wall
 
-libenigma.so: main.o input_rotor_values.o ramka.o rotor_tools.o rotor_crypt.o kom_panel.o init_rotor.o free_rotor.o init_blokR.o input_KP.o rotor_cikle.o
-	gcc -shared -o libenigma.so main.o input_rotor_values.o ramka.o rotor_tools.o rotor_crypt.o kom_panel.o init_rotor.o free_rotor.o init_blokR.o input_KP.o rotor_cikle.o -Wall
+libenigma.so: main.o input_rotor_values.o ramka.o rotor_tools.o rotor_crypt.o kom_panel.o init_rotor.o free_rotor.o init_blokR.o input_KP.o rotor_cikle.o mygetch.o
+	gcc -shared -o libenigma.so main.o input_rotor_values.o ramka.o rotor_tools.o rotor_crypt.o kom_panel.o init_rotor.o free_rotor.o init_blokR.o input_KP.o rotor_cikle.o mygetch.o -Wall
 
 main.o: main.c
 	gcc -c -fPIC main.c -Wall
@@ -38,6 +38,9 @@ input_KP.o: input_KP.c
 
 rotor_cikle.o: rotor_cikle.c
 	gcc -c -fPIC rotor_cikle.c -Wall
+
+mygetch.o: mygetch.c
+	gcc -c -fPIC mygetch.c -Wall
 
 clean:
 	rm -f *.o *.so enigma

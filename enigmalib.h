@@ -75,3 +75,5 @@ struct blok_R *init_blokR (void);
 char *input_KP (void);
 
 void rotor_cikle (struct rotor *, char);
+
+char mygetch (void);

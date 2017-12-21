@@ -42,7 +42,7 @@ int main (void)
             ch = EOF_DOP;
 
         move (y, x);
-        while (ch != EOF_DOP && (ch = toupper (getch ())) != EOF_DOP) {
+        while (ch != EOF_DOP && (ch = toupper (mygetch ())) != EOF_DOP) {
             if (isupper (ch)) {
                 getyx (curscr, y, x);
                 rotor_tools (rotors_blok);
