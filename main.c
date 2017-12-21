@@ -11,7 +11,7 @@ int main (void)
 
     noecho ();
 
-    signed char ch = 0;
+    int ch = 0;
     int y = STR_TXT, x = 0;
 
     char *replace = NULL;

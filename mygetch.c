@@ -4,7 +4,7 @@
     #include <conio.h>
 #endif
 
-char mygetch (void)
+int mygetch (void)
 {
     return (getch ());
 }

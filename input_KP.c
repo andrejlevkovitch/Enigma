@@ -7,7 +7,7 @@
 
 char* input_KP (void)
 {
-    char ch = 0;
+    int ch = 0;
     int x = 0;
 
     char *replace = NULL;

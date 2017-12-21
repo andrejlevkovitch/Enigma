@@ -7,7 +7,7 @@
 
 int inputRV (struct blok_R *blok)
 {
-    char ch = 0;
+    int ch = 0;
     int x = 0;
 
     move (STR_RV, x);
