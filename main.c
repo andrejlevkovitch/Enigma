@@ -20,7 +20,7 @@ int main (void)
 
     FILE *fp = NULL;
 
-    if ((fp = fopen ("crypt.dat", "w")) == NULL) {
+    if ((fp = fopen ("crypt.dat", "a")) == NULL) {
         printf ("ERROR of open file crypt.dat\n");
         exit (EXIT_FAILURE);
     }
@@ -65,6 +65,8 @@ int main (void)
                 }
         }
     }
+
+    putc ('\n', fp);
 
     if (fclose (fp) != 0) {
         printf ("ERROR of exit from file crypt.dat\n");

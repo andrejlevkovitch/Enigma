@@ -1,6 +1,6 @@
 //enigmalib.h
 
-#define EOF_DOP 4
+#define EOF_DOP ''
 
 #define N_ROTORS 3
 
@@ -23,10 +23,19 @@
 
 #define ALFABETO "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-#define RIGHT 67
-#define LEFT 68
-#define UP 65
-#define DOWN 66
+#ifdef linux
+    #define ESC 27
+    #define RIGHT 67
+    #define LEFT 68
+    #define UP 65
+    #define DOWN 66
+#elif windows
+    #define ESC 224
+    #define RIGHT 77
+    #define LEFT 75
+    #define UP 72
+    #define DOWN 80
+#endif
 
 struct rotor {
     struct rotor *prev;

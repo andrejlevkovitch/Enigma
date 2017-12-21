@@ -13,8 +13,10 @@ int inputRV (struct blok_R *blok)
     move (STR_RV, x);
 
     while ((ch = getch ()) != '\n') {
-        if (ch == 27) {
+        if (ch == ESC) {
+#ifdef linux
             if (getch () == 91) {
+#endif
                 switch (getch ()) {
                     case RIGHT:
                         if (x == N_ROTORS - 1)
@@ -76,7 +78,9 @@ int inputRV (struct blok_R *blok)
                         break;
                 }
                 refresh ();
+#ifdef linux
             }
+#endif
         }
         else
             if (ch == EOF_DOP)

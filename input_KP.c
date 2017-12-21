@@ -21,8 +21,10 @@ char* input_KP (void)
     move (STR_KP, x);
 
     while ((ch = getch ()) != '\n') {
-        if (ch == 27) {
+        if (ch == ESC) {
+#ifdef linux
             if (getch () == 91) {
+#endif
                 switch (getch ()) {
                     case RIGHT:
                         if (x == N_LETTERS - 1)
@@ -40,7 +42,9 @@ char* input_KP (void)
                         break;
                 }
                 refresh ();
+#ifdef linux
             }
+#endif
         }
         else
             if (isalpha (ch)) {
