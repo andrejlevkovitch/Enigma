@@ -11,8 +11,9 @@ int inputRV (struct blok_R *blok)
     int x = 0;
 
     move (STR_RV, x);
+    refresh ();
 
-    while ((ch = mygetch ()) != '\n') {
+    while ((ch = mygetch ()) != ENTER) {
         if (ch == ESC) {
 #ifdef linux
             if (mygetch () == 91) {

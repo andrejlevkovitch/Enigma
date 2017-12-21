@@ -42,6 +42,7 @@ int main (void)
             ch = EOF_DOP;
 
         move (y, x);
+        refresh ();
         while (ch != EOF_DOP && (ch = toupper (mygetch ())) != EOF_DOP) {
             if (isupper (ch)) {
                 getyx (curscr, y, x);
@@ -57,7 +58,7 @@ int main (void)
                 refresh ();
             }
             else
-                if (ch == '\n') {
+                if (ch == ENTER) {
                     y++;
                     x = 0;
                     putc (ch, fp);

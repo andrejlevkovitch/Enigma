@@ -19,8 +19,9 @@ char* input_KP (void)
     replace [N_LETTERS] = '\0';
 
     move (STR_KP, x);
+    refresh ();
 
-    while ((ch = mygetch ()) != '\n') {
+    while ((ch = mygetch ()) != ENTER) {
         if (ch == ESC) {
 #ifdef linux
             if (mygetch () == 91) {

@@ -25,16 +25,22 @@
 
 #ifdef linux
     #define ESC 27
+
     #define RIGHT 67
     #define LEFT 68
     #define UP 65
     #define DOWN 66
+
+    #define ENTER '\n'
 #else
     #define ESC 224
+
     #define RIGHT 77
     #define LEFT 75
     #define UP 72
     #define DOWN 80
+
+    #define ENTER 13
 #endif
 
 struct rotor {
