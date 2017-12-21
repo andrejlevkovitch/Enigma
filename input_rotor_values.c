@@ -34,16 +34,19 @@ int inputRV (struct blok_R *blok)
                         switch (x) {
                             case 0:
                                 blok->rotor_1 = blok->rotor_1->next;
+                                rotor_cikle (blok->rotor_1, UP);
                                 addch (blok->rotor_1->letter);
                                 move (STR_RV, x);
                                 break;
                             case 1:
                                 blok->rotor_2 = blok->rotor_2->next;
+                                rotor_cikle (blok->rotor_2, UP);
                                 addch (blok->rotor_2->letter);
                                 move (STR_RV, x);
                                 break;
                             case 2:
                                 blok->rotor_3 = blok->rotor_3->next;
+                                rotor_cikle (blok->rotor_3, UP);
                                 addch (blok->rotor_3->letter);
                                 move (STR_RV, x);
                                 break;
@@ -53,16 +56,19 @@ int inputRV (struct blok_R *blok)
                         switch (x) {
                             case 0:
                                 blok->rotor_1 = blok->rotor_1->prev;
+                                rotor_cikle (blok->rotor_1, DOWN);
                                 addch (blok->rotor_1->letter);
                                 move (STR_RV, x);
                                 break;
                             case 1:
                                 blok->rotor_2 = blok->rotor_2->prev;
+                                rotor_cikle (blok->rotor_2, DOWN);
                                 addch (blok->rotor_2->letter);
                                 move (STR_RV, x);
                                 break;
                             case 2:
                                 blok->rotor_3 = blok->rotor_3->prev;
+                                rotor_cikle (blok->rotor_3, DOWN);
                                 addch (blok->rotor_3->letter);
                                 move (STR_RV, x);
                                 break;

@@ -19,6 +19,7 @@
 #define PERMUTATION_R1 "USPAIBRCJEKMFLGDQVZNTOWYHX"
 #define PERMUTATION_R2 "IRUXBLHWTMCQGZNPYFVOEAJDKS"
 #define PERMUTATION_R3 "USQOBDFHJLCPRTXVZNYEIWGAKM"
+#define PERMUTATION_RB "YRUHQSLDPXNGOKMIEBFZCWVJAT"
 
 #define ALFABETO "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -31,6 +32,7 @@ struct rotor {
     struct rotor *prev;
     struct rotor *next;
     int number;
+    int cur_value;
     char letter;
     struct rotor *input;
     struct rotor *output;
@@ -40,6 +42,7 @@ struct blok_R {
     struct rotor *rotor_1;
     struct rotor *rotor_2;
     struct rotor *rotor_3;
+    struct rotor *reflektor_B;
 };
 
 int inputRV (struct blok_R *);
@@ -61,3 +64,5 @@ int free_rotor (struct rotor *);
 struct blok_R *init_blokR (void);
 
 char *input_KP (void);
+
+void rotor_cikle (struct rotor *, char);

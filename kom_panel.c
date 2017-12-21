@@ -1,6 +1,5 @@
 //kom_panel.c
 
-#include <curses.h>
 #include "enigmalib.h"
 
 char kom_panel (char ch, char *replace, char kurs)

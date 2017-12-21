@@ -1,6 +1,5 @@
 //main.c
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <curses.h>
 #include <ctype.h>
@@ -80,6 +79,7 @@ int main (void)
     free_rotor (rotors_blok->rotor_1);
     free_rotor (rotors_blok->rotor_2);
     free_rotor (rotors_blok->rotor_3);
+    free_rotor (rotors_blok->reflektor_B);
     free (rotors_blok);
     rotors_blok = NULL;
 

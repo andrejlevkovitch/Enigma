@@ -6,54 +6,47 @@
 char rotor_crypt (char ch, struct blok_R *blok)
 {
     struct rotor *r = NULL;
-    struct rotor *r_b = NULL;
-    int n = 0;
+    int n = ch - 'A';
 
     for (int i = 0; i < N_ROTORS; ++i) {
         switch (i) {
             case 0:
-                r_b = r = blok->rotor_3;
+                r = blok->rotor_3;
                 break;
             case 1:
-                r_b = r = blok->rotor_2;
+                r = blok->rotor_2;
                 break;
             case 2:
-                r_b = r = blok->rotor_1;
+                r = blok->rotor_1;
                 break;
         }
 
-        n = ch - 'A';
         for (int j = 0; j < n; ++j) {
             r = r->next;
         }
-        ch = r->output->letter;
-        ch -= (r_b->letter - 'A');
-        ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
+        n = r->output->cur_value;
     }
 
-    ch = reflector_B (ch);
-
-    for (int i = N_ROTORS - 1; i >= 0; --i) {
+    for (int i = N_ROTORS; i >= 0; --i) {
         switch (i) {
             case 0:
-                r_b = r = blok->rotor_3;
+                r = blok->rotor_3;
                 break;
             case 1:
-                r_b = r = blok->rotor_2;
+                r = blok->rotor_2;
                 break;
             case 2:
-                r_b = r = blok->rotor_1;
+                r = blok->rotor_1;
                 break;
+            case 3:
+                r = blok->reflektor_B;
         }
 
-        n = ch - 'A';
         for (int j = 0; j < n; ++j) {
             r = r->next;
         }
-        ch = r->input->letter;
-        ch -= (r_b->letter - 'A');
-        ch = (ch < 'A') ? ch - 'A' + 'Z' + 1: ch;
+        n = r->input->cur_value;
     }
 
-    return ch;
+    return n + 'A';
 }
