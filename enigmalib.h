@@ -32,7 +32,7 @@ struct rotor {
     struct rotor *prev;
     struct rotor *next;
     int number;
-    int cur_value;
+    int cur_position;
     char letter;
     struct rotor *input;
     struct rotor *output;

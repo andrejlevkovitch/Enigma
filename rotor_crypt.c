@@ -24,7 +24,7 @@ char rotor_crypt (char ch, struct blok_R *blok)
         for (int j = 0; j < n; ++j) {
             r = r->next;
         }
-        n = r->output->cur_value;
+        n = r->output->cur_position;
     }
 
     for (int i = N_ROTORS; i >= 0; --i) {
@@ -45,7 +45,7 @@ char rotor_crypt (char ch, struct blok_R *blok)
         for (int j = 0; j < n; ++j) {
             r = r->next;
         }
-        n = r->input->cur_value;
+        n = r->input->cur_position;
     }
 
     return n + 'A';
