@@ -65,6 +65,9 @@ int main (void)
                     break;
                 }
         }
+
+        free (replace);
+        replace = NULL;
     }
 
     putc ('\n', fp);
@@ -77,8 +80,6 @@ int main (void)
 
     endwin ();
 
-    free (replace);
-    replace = NULL;
     free_rotor (rotors_blok->rotor_1);
     free_rotor (rotors_blok->rotor_2);
     free_rotor (rotors_blok->rotor_3);
