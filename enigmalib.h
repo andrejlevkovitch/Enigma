@@ -29,7 +29,7 @@
     #define LEFT 68
     #define UP 65
     #define DOWN 66
-#elif windows
+#else
     #define ESC 224
     #define RIGHT 77
     #define LEFT 75

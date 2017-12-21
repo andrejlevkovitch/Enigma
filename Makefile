@@ -24,9 +24,6 @@ rotor_crypt.o: rotor_crypt.c
 kom_panel.o: kom_panel.c
 	gcc -c -fPIC kom_panel.c -Wall
 
-1.o: 1.c
-	gcc -c 1.c -Wall
-
 init_rotor.o: init_rotor.c
 	gcc -c -fPIC init_rotor.c -Wall
 
