@@ -22,6 +22,8 @@ char* input_KP (void)
     refresh ();
 
     while ((ch = mygetch ()) != ENTER) {
+        move (STR_KP + 2, 0);
+        clrtoeol ();
         if (ch == ESC) {
 #ifdef linux
             if (mygetch () == 91) {
@@ -52,11 +54,15 @@ char* input_KP (void)
                 ch = toupper (ch);
                 for (int i = 0; i < N_LETTERS; ++i) {
                     if (replace [i] == ch) {
-                        replace [i] = replace [x];
-                        break;
+                        if ((i + 'A') == ch || (x + 'A') == ch) {
+                            replace [i] = replace [x];
+                            replace [x] = ch;
+                            break;
+                        }
+                        else
+                            mvprintw (STR_KP + 2, 0, "%s", "NO-NO-NOOOO... ITS IMPASSIBLE");
                     }
                 }
-                replace [x] = ch;
                 mvprintw (STR_KP, 0, "%s", replace);
                 move (STR_KP, x);
                 refresh ();

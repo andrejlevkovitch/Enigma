@@ -30,17 +30,15 @@ int main (void)
         printf ("ERROR of memory!!!\n");
     }
 
-    while (ch != EOF_DOP) {
-        if (ch != EOF_DOP) {
-            ramka (rotors_blok);
+    if (ch != EOF_DOP)
+        ramka (rotors_blok);
 
+    if (ch != EOF_DOP && !(replace = input_KP ()))
+        ch = EOF_DOP;
+
+    while (ch != EOF_DOP) {
             if (inputRV (rotors_blok))
                 ch = EOF_DOP;
-        }
-
-        if (ch != EOF_DOP && !(replace = input_KP ()))
-            ch = EOF_DOP;
-
         move (y, x);
         refresh ();
         while (ch != EOF_DOP && (ch = toupper (mygetch ())) != EOF_DOP) {
@@ -65,9 +63,6 @@ int main (void)
                     break;
                 }
         }
-
-        free (replace);
-        replace = NULL;
     }
 
     putc ('\n', fp);
@@ -80,6 +75,8 @@ int main (void)
 
     endwin ();
 
+    free (replace);
+    replace = NULL;
     free_rotor (rotors_blok->rotor_1);
     free_rotor (rotors_blok->rotor_2);
     free_rotor (rotors_blok->rotor_3);
